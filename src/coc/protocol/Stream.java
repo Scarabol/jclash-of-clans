@@ -1,22 +1,20 @@
 package coc.protocol;
 
-import coc.RC4;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author manus
- */
+import coc.RC4;
+
 public abstract class Stream {
 
     public interface OnMessageListener {
-
         public void onMessage(Stream stream, Message message);
     }
+
     public interface OnDataListener {
         public boolean onData(Stream stream, ByteStream data);
     }
+
     OnMessageListener messageListener = null;
     OnDataListener dataListenner = null;
     ByteStream stream = new ByteStream();
@@ -30,6 +28,7 @@ public abstract class Stream {
     public void update(byte[] data) {
         update(data, data.length);
     }
+
     public void update(byte[] data, int leng) {
         stream.add(data, leng);
     }
@@ -45,14 +44,14 @@ public abstract class Stream {
     public int queue() {
         return queue(0);
     }
-    
+
     public abstract int queue(int maxMessages);
 
     public byte[] xor(byte[] data, byte[] key) {
-        return xor(data, key,0, data.length);
+        return xor(data, key, 0, data.length);
     }
 
-    public byte[] xor(byte[] data, byte[] key,int offset, int leng) {
+    public byte[] xor(byte[] data, byte[] key, int offset, int leng) {
         byte[] tmp = new byte[leng];
         for (int i = 0; i < leng; i++) {
             tmp[i] = (byte) (data[i + offset] ^ key[i % key.length]);
@@ -67,8 +66,9 @@ public abstract class Stream {
     public void setRc4Key(byte[] key) {
         this.rc4 = new RC4(key);
         rc4.generate(rc4.getKeylen());
-        
     }
-    
-    
+
+    public void update(Message message) {
+    }
+
 }

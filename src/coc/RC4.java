@@ -1,18 +1,15 @@
 package coc;
 
-/**
- *
- * @author manus
- */
 public class RC4 {
+
     private final byte[] S = new byte[256];
     private final byte[] T = new byte[256];
     private final int keylen;
     private int i = 0, j = 0, k, t;
+
     public RC4(final byte[] key) {
         if (key.length < 1 || key.length > 256) {
-            throw new IllegalArgumentException(
-                    "key must be between 1 and 256 bytes");
+            throw new IllegalArgumentException("key must be between 1 and 256 bytes");
         } else {
             keylen = key.length;
             for (int i = 0; i < 256; i++) {
@@ -33,11 +30,11 @@ public class RC4 {
     public byte[] encrypt(final byte[] plaintext) {
         return encrypt(plaintext, true);
     }
+
     public byte[] encrypt(final byte[] plaintext, boolean reset) {
         final byte[] ciphertext = new byte[plaintext.length];
-        if(reset)
-        {
-            i = j = k = t= 0;
+        if (reset) {
+            i = j = k = t = 0;
         }
         byte tmp;
         for (int counter = 0; counter < plaintext.length; counter++) {
@@ -56,8 +53,8 @@ public class RC4 {
     public byte[] decrypt(final byte[] ciphertext) {
         return encrypt(ciphertext, true);
     }
-    public byte[] generate(int size)
-    {
+
+    public byte[] generate(int size) {
         byte[] data = new byte[size];
         return encrypt(data, false);
     }
@@ -65,6 +62,5 @@ public class RC4 {
     public int getKeylen() {
         return keylen;
     }
-    
-    
+
 }

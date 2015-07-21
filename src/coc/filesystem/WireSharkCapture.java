@@ -12,10 +12,6 @@ import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- *
- * @author manus
- */
 public class WireSharkCapture {
 
     byte[] send;
@@ -24,22 +20,20 @@ public class WireSharkCapture {
     public WireSharkCapture() {
 
     }
-    
-    private byte[] loadFile(File file)
-    {
+
+    private byte[] loadFile(File file) {
         try {
             List<Byte> items = new ArrayList<>();
             byte[] buffer = new byte[1024];
             int leng = 0;
             FileInputStream in = new FileInputStream(file);
-            while((leng = in.read(buffer)) > 0)
-            {
-                for(int i = 0; i < leng; i++)
-                {
+            while ((leng = in.read(buffer)) > 0) {
+                for (int i = 0; i < leng; i++) {
                     items.add(buffer[i]);
                 }
             }
-            
+            in.close();
+
             byte[] result = new byte[items.size()];
             for (int i = 0; i < items.size(); i++) {
                 result[i] = items.get(i);
@@ -54,11 +48,9 @@ public class WireSharkCapture {
     }
 
     public boolean loadRaw(File send, File recv) {
-        
-        if((this.send = loadFile(send)) != null)
-        {
-            if((this.recv = loadFile(recv)) != null)
-            {
+
+        if ((this.send = loadFile(send)) != null) {
+            if ((this.recv = loadFile(recv)) != null) {
                 return true;
             }
         }
@@ -66,7 +58,6 @@ public class WireSharkCapture {
     }
 
     public boolean loadHex(File file) {
-        byte[] data = new byte[0];
         try {
             Scanner scanner = new Scanner(file);
             String line;

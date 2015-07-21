@@ -1,9 +1,7 @@
 package coc;
 
-/**
- * Created by manus on 15/4/15.
- */
 public class Utils {
+
     public static byte[] parseData(String key, int base) {
         int len = key.length();
         byte[] data = new byte[len / 2];
@@ -23,8 +21,7 @@ public class Utils {
         String b = "";
         String c = "";
         for (int i = 0; i < leng; i++) {
-            if(i % 16 == 0)
-            {
+            if (i % 16 == 0) {
                 c = String.format("%08x", i);
             }
             a += (String.format("%02x ", (int) (items[i] & 0xff)));
@@ -46,19 +43,19 @@ public class Utils {
 
     private static void display(String text) {
         System.out.println(text);
-//        try {
-//            FileOutputStream out = new FileOutputStream("console.log", true);
-//            out.write((text + "\n").getBytes());
-//            out.close();
-//        } catch (IOException ex) {
-//            Logger.getLogger(COC.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        // try {
+        // FileOutputStream out = new FileOutputStream("console.log", true);
+        // out.write((text + "\n").getBytes());
+        // out.close();
+        // } catch (IOException ex) {
+        // Logger.getLogger(COC.class.getName()).log(Level.SEVERE, null, ex);
+        // }
     }
 
     private static boolean readdable(char c) {
         return !Character.isISOControl(c);
-//        return c >= '0' && c <= 'Z';
-//        return true;
+        // return c >= '0' && c <= 'Z';
+        // return true;
     }
 
     public static void hexDump(byte[] data, int offset, int leng) {

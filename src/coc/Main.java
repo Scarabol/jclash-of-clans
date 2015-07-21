@@ -4,20 +4,15 @@ import coc.protocol.Message;
 import coc.protocol.connection.SocketConnection;
 import coc.protocol.messages.MessageFactory;
 
-/**
- *
- * @author manus
- */
 public class Main {
 
     /**
-     * @param args the command line arguments
+     * @param args
+     *            the command line arguments
      */
     public static void main(String[] args) {
         // TODO code application logic here
         Message login = MessageFactory.get(MessageFactory.MESSAGE_TYPE_LOGIN);
-        long userId = 0l;
-
         login.setField(0, LoginSettings.USER_ID); // client id
         login.setField(1, LoginSettings.PASSWORD); // password
         login.setField(2, 7);
@@ -40,7 +35,7 @@ public class Main {
         login.setField(19, "");
         login.setField(20, 1177687346);
 
-        SocketConnection connection = new SocketConnection("game.clashofclans.com", 9339);
+        SocketConnection connection = new SocketConnection("gamea.clashofclans.com", 9339);
         connection.connect();
 
         connection.run(login);

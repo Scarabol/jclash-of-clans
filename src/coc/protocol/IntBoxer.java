@@ -1,10 +1,8 @@
 package coc.protocol;
 
-/**
- *
- * @author manus
- */
 public class IntBoxer {
+
+    public int value;
 
     public IntBoxer() {
     }
@@ -12,5 +10,5 @@ public class IntBoxer {
     public IntBoxer(int startValue) {
         this.value = startValue;
     }
-    public int value;
+
 }

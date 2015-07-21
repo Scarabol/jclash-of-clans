@@ -1,8 +1,5 @@
 package coc.protocol.connection;
 
-import coc.protocol.Message;
-import coc.protocol.Stream;
-import coc.protocol.StreamMessageManager;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -10,10 +7,10 @@ import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author manus
- */
+import coc.protocol.Message;
+import coc.protocol.Stream;
+import coc.protocol.StreamMessageManager;
+
 public class SocketConnection implements Stream.OnMessageListener {
 
     private String host;
@@ -65,7 +62,8 @@ public class SocketConnection implements Stream.OnMessageListener {
     @Override
     public void onMessage(Stream stream, Message message) {
         System.out.println("New message: " + message.getMessageType());
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        // throw new UnsupportedOperationException("Not supported yet."); //To
+        // change body of generated methods, choose Tools | Templates.
     }
 
     public void sendMessageInterval(final Message message, final int interval) {
@@ -75,7 +73,9 @@ public class SocketConnection implements Stream.OnMessageListener {
             public void run() {
                 try {
                     Thread.sleep(0);
-//                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                    // throw new UnsupportedOperationException("Not supported
+                    // yet."); //To change body of generated methods, choose
+                    // Tools | Templates.
                     while (send(message)) {
                         try {
                             Thread.sleep(interval);
@@ -99,7 +99,7 @@ public class SocketConnection implements Stream.OnMessageListener {
         } catch (IOException ex) {
             Logger.getLogger(SocketConnection.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
 
 }
