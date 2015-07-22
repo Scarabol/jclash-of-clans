@@ -28,7 +28,7 @@ public class RC4 {
     }
 
     public byte[] encrypt(final byte[] plaintext) {
-        return encrypt(plaintext, true);
+        return encrypt(plaintext, false);
     }
 
     public byte[] encrypt(final byte[] plaintext, boolean reset) {
@@ -51,12 +51,12 @@ public class RC4 {
     }
 
     public byte[] decrypt(final byte[] ciphertext) {
-        return encrypt(ciphertext, true);
+        return encrypt(ciphertext, false);
     }
 
     public byte[] generate(int size) {
         byte[] data = new byte[size];
-        return encrypt(data, false);
+        return encrypt(data);
     }
 
     public int getKeylen() {

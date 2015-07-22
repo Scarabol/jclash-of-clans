@@ -22,10 +22,9 @@ public class InboundStream extends Stream {
                 return total;
             }
             byte[] payload = stream.clone(messageSize);
-            byte[] data = rc4.encrypt(payload, false);
-            // byte[] data = xor(payload, key);
+            byte[] data = rc4.decrypt(payload);
             if (Constants.DEBUG_PACKETS) {
-                System.out.println("Message: " + messageType);
+                System.out.println("received message: " + messageType);
                 Utils.displayBytes(data);
             }
             Message message = MessageFactory.get(messageType);

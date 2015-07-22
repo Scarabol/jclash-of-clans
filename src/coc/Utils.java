@@ -28,21 +28,25 @@ public class Utils {
             char n = (char) (items[i] & 0xff);
             b += readdable(n) ? n : ".";
             if (i % 8 == 7) {
-                a += "  ";
+                a += " ";
                 b += "  ";
             }
             if (i % 16 == 15) {
-                display(c + " " + a + "  " + b);
+                display(c, a, b);
                 a = "";
                 b = "";
                 c = "";
             }
         }
-        display(c + " " + a + "  " + b);
+        display(c, a, b);
     }
 
-    private static void display(String text) {
-        System.out.println(text);
+    private static void display(String col1, String col2, String col3) {
+        col2 = col2.trim();
+        while (col2.length() < 49) {
+            col2 += " ";
+        }
+        System.out.println(col1 + " " + col2 + " " + col3);
         // try {
         // FileOutputStream out = new FileOutputStream("console.log", true);
         // out.write((text + "\n").getBytes());
