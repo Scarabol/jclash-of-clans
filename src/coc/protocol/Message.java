@@ -5,10 +5,10 @@ import java.util.List;
 
 public class Message {
 
-    int messageType;
-    List<Field> fields = new ArrayList<>();
-    Field fieldError = null;
-    int indexError = -1;
+    private int messageType;
+    private List<Field> fields = new ArrayList<>();
+    private Field fieldError = null;
+    private int indexError = -1;
 
     public Message(int messageType, List<Field> fields) {
         this.messageType = messageType;
@@ -38,6 +38,12 @@ public class Message {
 
     public Message addField(Field field) {
         fields.add(field.clone());
+        return this;
+    }
+
+    public Message addField(Field field, Object value) {
+        field.setValue(value);
+        addField(field);
         return this;
     }
 

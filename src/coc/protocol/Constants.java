@@ -4,7 +4,7 @@ public class Constants {
 
     public static final String RC4_KEY = "fhsd6f86f67rt8fw78fw789we78r9789wer6re";
 
-    public static boolean DEBUG_PACKETS = false;
+    public static boolean DEBUG_PACKETS = true;
 
     public static final String PROTOCOL = "[\n" + "    {\n" + "        \"title\": \"AccountSwitchedMessage\",\n"
             + "        \"type\": 10118,\n" + "        \"types\": [\n" + "            \"Long\"\n" + "        ],\n"

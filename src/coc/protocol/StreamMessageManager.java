@@ -24,14 +24,19 @@ public class StreamMessageManager extends MessageManager implements Stream.OnDat
                 if (recv.queue(1) == 1) {
                     System.out.println("DONE!!!!!!!");
                     // encription message here!
-                    Message encriptionMessage = recv.getMessages().get(0);
-                    long seed = loginMessage.getField(20).getNumber();
-                    Scramble scramble = new Scramble((int) seed);
-                    byte[] severRandom = encriptionMessage.getField(0).getRaw();
-                    byte[] nonce = scramble.getScramble(severRandom);
-                    byte[] key = ByteUtils.join(Constants.RC4_KEY.getBytes(), nonce);
-                    send.setRc4Key(key);
-                    recv.setRc4Key(key);
+                    Message encryptionMessage = recv.getMessages().get(0);
+                    // TODO replace with message type code
+                    if (encryptionMessage.getMessageType() == 20000) {
+                        long seed = loginMessage.getField(20).getNumber();
+                        Scramble scramble = new Scramble((int) seed);
+                        byte[] severRandom = encryptionMessage.getField(0).getRaw();
+                        byte[] nonce = scramble.getScramble(severRandom);
+                        byte[] key = ByteUtils.join(Constants.RC4_KEY.getBytes(), nonce);
+                        send.setRc4Key(key);
+                        recv.setRc4Key(key);
+                    } else {
+                        System.err.println("Login failed!");
+                    }
                     return true;
                 }
             }

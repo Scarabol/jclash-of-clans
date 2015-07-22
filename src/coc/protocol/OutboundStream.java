@@ -2,6 +2,8 @@ package coc.protocol;
 
 import java.util.Stack;
 
+import coc.Utils;
+
 /**
  * Process messages from client (encryption)
  * 
@@ -42,6 +44,9 @@ public class OutboundStream extends Stream {
     private void encode(ByteStream stm) {
         byte[] payload = stm.copy();
         byte[] key = rc4.generate(stm.getSize());
+        if (Constants.DEBUG_PACKETS) {
+            Utils.displayBytes(payload);
+        }
         stream.add(xor(payload, key));
     }
 

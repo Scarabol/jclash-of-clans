@@ -31,9 +31,9 @@ public class ProxyMessageManager extends MessageManager implements Stream.OnMess
     @Override
     public void onMessage(Stream stream, Message message) {
         if (stream == recv) {
-            System.out.println("Message from server: " + message.messageType);
+            System.out.println("Message from server: " + message.getMessageType());
         } else {
-            System.out.println("Message from client: " + message.messageType);
+            System.out.println("Message from client: " + message.getMessageType());
         }
         message.dump();
     }

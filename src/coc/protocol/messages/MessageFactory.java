@@ -12,7 +12,7 @@ public class MessageFactory {
     public static final int MESSAGE_TYPE_KEEP_ALIVE = 0x277C;
 
     ////////// Server -> Client
-    public static final int MESSAGE_TYPE_ENCRIPTION = 0x4E20;
+    public static final int MESSAGE_TYPE_ENCRYPTION = 0x4E20;
     public static final int MESSAGE_TYPE_LOGIN_OK = 0x4E88;
     public static final int MESSAGE_TYPE_OWN_HOME_DATA = 0x5E25;
 
@@ -23,20 +23,15 @@ public class MessageFactory {
 
     static {
 
+        messages.add(new Login());
+        messages.add(new LoginFailed());
+
         messages.add(new Message(LOGIC_TYPE_CLIENT_HOME).addField(Field.LONG).addField(Field.STRING).addField(Field.INT)
                 .addField(Field.INT).addField(Field.INT));
 
-        // Login message
-        messages.add(new Message(MESSAGE_TYPE_LOGIN).addField(Field.LONG).addField(Field.STRING).addField(Field.INT)
-                .addField(Field.INT).addField(Field.INT).addField(Field.STRING).addField(Field.STRING)
-                .addField(Field.STRING).addField(Field.STRING).addField(Field.STRING).addField(Field.INT)
-                .addField(Field.STRING).addField(Field.STRING).addField(Field.STRING).addField(Field.BYTE)
-                .addField(Field.STRING).addField(Field.STRING).addField(Field.STRING).addField(Field.BYTE)
-                .addField(Field.STRING).addField(Field.INT));
-
         messages.add(new Message(MESSAGE_TYPE_KEEP_ALIVE));
 
-        messages.add(new Message(MESSAGE_TYPE_ENCRIPTION).addField(Field.STRING).addField(Field.INT));
+        messages.add(new Message(MESSAGE_TYPE_ENCRYPTION).addField(Field.STRING).addField(Field.INT));
 
         messages.add(new Message(MESSAGE_TYPE_LOGIN_OK).addField(Field.LONG).addField(Field.LONG).addField(Field.STRING)
                 .addField(Field.STRING).addField(Field.STRING).addField(Field.INT).addField(Field.INT)

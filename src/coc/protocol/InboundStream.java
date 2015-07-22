@@ -18,8 +18,9 @@ public class InboundStream extends Stream {
             int messageSize = (int) stream.read(2);
             messageSize += stream.read(2);
             stream.skip();
-            if (stream.isEnd(messageSize))
+            if (stream.isEnd(messageSize)) {
                 return total;
+            }
             byte[] payload = stream.clone(messageSize);
             byte[] data = rc4.encrypt(payload, false);
             // byte[] data = xor(payload, key);

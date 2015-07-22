@@ -3,7 +3,6 @@ package coc.protocol;
 public class Field {
 
     enum FieldType {
-
         TYPE_QWORD, TYPE_DWORD, TYPE_BYTE, TYPE_STRING, TYPE_BOOLEAN
     }
 
@@ -67,8 +66,10 @@ public class Field {
 
     public int build(ByteStream message) {
         switch (type) {
-        case TYPE_BOOLEAN:
         case TYPE_BYTE:
+            message.write(((Byte) value).intValue(), size, true);
+            return size;
+        case TYPE_BOOLEAN:
         case TYPE_DWORD:
             message.write((int) value, size, true);
             return size;
@@ -77,9 +78,10 @@ public class Field {
             return size;
         case TYPE_STRING:
             String s = getString();
-            int leng = s.length() < 0xFFFFFFFFl ? s.length() : 0xFFFFFFFF;
+            // TODO this could be nicer
+            int leng = (s != null && s.length() < 0xFFFFFFFFl) ? s.length() : 0xFFFFFFFF;
             message.write(leng, 4, true);
-            if (s.length() > 0 && s.length() < 0xFFFFFFFFl) {
+            if (s != null && s.length() > 0 && s.length() < 0xFFFFFFFFl) {
                 message.write(s.getBytes());
             }
             return 4 + leng;
