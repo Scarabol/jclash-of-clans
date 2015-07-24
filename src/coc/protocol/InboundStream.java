@@ -14,6 +14,8 @@ public class InboundStream extends Stream {
         int total = 0;
         stream.reset();
         while (!stream.isEnd()) {
+            // offsets from https://github.com/clanner/cocdp/wiki/Protocol
+            // alternate offsets http://www.androidgamehacks.net/forums/showthread.php?tid=33923&pid=324165#pid324165
             int messageType = (int) stream.read(2, true);
             int messageSize = (int) stream.read(2);
             messageSize += stream.read(2);

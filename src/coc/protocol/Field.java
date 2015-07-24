@@ -53,6 +53,11 @@ public class Field {
             break;
         case TYPE_STRING:
             int size = (int) message.read(4, true);
+            System.out.println("parsing " + type.toString() + " with length " + size);
+//            byte[] bsize = new byte[] { message.read(), message.read(), message.read(), message.read() };
+//            ByteBuffer buffer = ByteBuffer.wrap(bsize);
+//            buffer.order(ByteOrder.BIG_ENDIAN);
+//            int size = buffer.getInt();
             if (size > 0 && size != -1) {
                 if (message.isEnd(size))
                     return false;
@@ -71,10 +76,10 @@ public class Field {
             return size;
         case TYPE_BOOLEAN:
         case TYPE_DWORD:
-            message.write((int) value, size, true);
+            message.write((Integer) value, size, true);
             return size;
         case TYPE_QWORD:
-            message.write((long) value, size, true);
+            message.write((Long) value, size, true);
             return size;
         case TYPE_STRING:
             String s = getString();

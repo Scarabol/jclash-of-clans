@@ -1,6 +1,7 @@
 package coc.protocol;
 
 public class ByteStream {
+
     byte[] data = new byte[0];
     IntBoxer pointer = new IntBoxer(0);
 
@@ -162,4 +163,5 @@ public class ByteStream {
     public int getSize() {
         return data.length;
     }
+
 }

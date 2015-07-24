@@ -68,7 +68,6 @@ public class StreamMessageManager extends MessageManager implements Stream.OnDat
             ex.printStackTrace();
         }
         return false;
-
     }
 
     public boolean send(Message message) {

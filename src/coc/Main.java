@@ -11,7 +11,7 @@ public class Main {
         // First login to the server
         Message login = new Login();
 
-        SocketConnection connection = new SocketConnection("gamea.clashofclans.com", 9339);
+        SocketConnection connection = new SocketConnection("game.clashofclans.com", 9339);
         connection.connect();
 
         connection.run(login);

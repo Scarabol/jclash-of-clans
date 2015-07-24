@@ -9,16 +9,16 @@ public class MessageManager {
         recv(dataFromSerer, dataFromSerer.length);
     }
 
-    public void recv(byte[] dataFromSerer, int leng) {
-        recv.update(dataFromSerer, leng);
+    public void recv(byte[] dataFromServer, int lengh) {
+        recv.update(dataFromServer, lengh);
     }
 
-    public void send(byte[] dataToSerer) {
-        send(dataToSerer, dataToSerer.length);
+    public void send(byte[] dataToServer) {
+        send(dataToServer, dataToServer.length);
     }
 
-    public void send(byte[] dataToSerer, int leng) {
-        send.update(dataToSerer, leng);
+    public void send(byte[] dataToServer, int lengh) {
+        send.update(dataToServer, lengh);
     }
 
     public boolean init() {

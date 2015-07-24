@@ -52,11 +52,11 @@ public abstract class Stream {
     }
 
     public byte[] xor(byte[] data, byte[] key, int offset, int leng) {
-        byte[] tmp = new byte[leng];
+        byte[] result = new byte[leng];
         for (int i = 0; i < leng; i++) {
-            tmp[i] = (byte) (data[i + offset] ^ key[i % key.length]);
+            result[i] = (byte) (data[i + offset] ^ key[i % key.length]);
         }
-        return tmp;
+        return result;
     }
 
     public List<Message> getMessages() {
